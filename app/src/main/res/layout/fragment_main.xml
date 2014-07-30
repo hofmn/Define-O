@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_alizarin"
+    android:id="@+id/word_layout">
+
+    <TextSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:id="@+id/wordTextView"
+        android:textColor="@color/color_clouds"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
