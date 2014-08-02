@@ -1,410 +1,641 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="popular_english_verbs">
-        <item>accept</item>
-        <item>care</item>
-        <item>could</item>
-        <item>enjoy</item>
-        <item>happen</item>
-        <item>lead</item>
-        <item>open</item>
-        <item>reduce</item>
-        <item>settle</item>
-        <item>teach</item>
-        <item>account</item>
-        <item>carry</item>
-        <item>count</item>
-        <item>examine</item>
-        <item>hate</item>
-        <item>learn</item>
-        <item>order</item>
-        <item>refer</item>
-        <item>shake</item>
-        <item>tell</item>
-        <item>achieve</item>
-        <item>catch</item>
-        <item>cover</item>
-        <item>exist</item>
-        <item>have</item>
-        <item>leave</item>
-        <item>ought</item>
-        <item>reflect</item>
-        <item>shall</item>
-        <item>tend</item>
-        <item>act</item>
-        <item>cause</item>
-        <item>create</item>
-        <item>expect</item>
-        <item>head</item>
-        <item>lend</item>
-        <item>own</item>
-        <item>refuse</item>
-        <item>share</item>
-        <item>test</item>
-        <item>add</item>
-        <item>change</item>
-        <item>cross</item>
-        <item>experience</item>
-        <item>hear</item>
-        <item>let</item>
-        <item>pass</item>
-        <item>regard</item>
-        <item>shoot</item>
-        <item>thank</item>
-        <item>admit</item>
-        <item>charge</item>
-        <item>cry</item>
-        <item>explain</item>
-        <item>help</item>
-        <item>lie</item>
-        <item>pay</item>
-        <item>relate</item>
-        <item>should</item>
-        <item>think</item>
-        <item>affect</item>
-        <item>check</item>
-        <item>cut</item>
-        <item>express</item>
-        <item>hide</item>
-        <item>like</item>
-        <item>perform</item>
-        <item>release</item>
-        <item>shout</item>
-        <item>throw</item>
-        <item>afford</item>
-        <item>choose</item>
-        <item>damage</item>
-        <item>extend</item>
-        <item>hit</item>
-        <item>limit</item>
-        <item>pick</item>
-        <item>remain</item>
-        <item>show</item>
-        <item>touch</item>
-        <item>agree</item>
-        <item>claim</item>
-        <item>dance</item>
-        <item>face</item>
-        <item>hold</item>
-        <item>link</item>
-        <item>place</item>
-        <item>remember</item>
-        <item>shut</item>
-        <item>train</item>
-        <item>aim</item>
-        <item>clean</item>
-        <item>deal</item>
-        <item>fail</item>
-        <item>hope</item>
-        <item>listen</item>
-        <item>plan</item>
-        <item>remove</item>
-        <item>sing</item>
-        <item>travel</item>
-        <item>allow</item>
-        <item>clear</item>
-        <item>decide</item>
-        <item>fall</item>
-        <item>hurt</item>
-        <item>live</item>
-        <item>play</item>
-        <item>repeat</item>
-        <item>sit</item>
-        <item>treat</item>
-        <item>answer</item>
-        <item>climb</item>
-        <item>deliver</item>
-        <item>fasten</item>
-        <item>identify</item>
-        <item>look</item>
-        <item>point</item>
-        <item>replace</item>
-        <item>sleep</item>
-        <item>try</item>
-        <item>appear</item>
-        <item>close</item>
-        <item>demand</item>
-        <item>feed</item>
-        <item>imagine</item>
-        <item>lose</item>
-        <item>prefer</item>
-        <item>reply</item>
-        <item>smile</item>
-        <item>turn</item>
-        <item>apply</item>
-        <item>collect</item>
-        <item>deny</item>
-        <item>feel</item>
-        <item>improve</item>
-        <item>love</item>
-        <item>prepare</item>
-        <item>report</item>
-        <item>sort</item>
-        <item>understand</item>
-        <item>argue</item>
-        <item>come</item>
-        <item>depend</item>
-        <item>fight</item>
-        <item>include</item>
-        <item>make</item>
-        <item>present</item>
-        <item>represent</item>
-        <item>sound</item>
-        <item>use</item>
-        <item>arrange</item>
-        <item>commit</item>
-        <item>describe</item>
-        <item>fill</item>
-        <item>increase</item>
-        <item>manage</item>
-        <item>press</item>
-        <item>require</item>
-        <item>speak</item>
-        <item>used to</item>
-        <item>arrive</item>
-        <item>compare</item>
-        <item>design</item>
-        <item>find</item>
-        <item>indicate</item>
-        <item>mark</item>
-        <item>prevent</item>
-        <item>rest</item>
-        <item>stand</item>
-        <item>visit</item>
-        <item>ask</item>
-        <item>complain</item>
-        <item>destroy</item>
-        <item>finish</item>
-        <item>influence</item>
-        <item>matter</item>
-        <item>produce</item>
-        <item>result</item>
-        <item>start</item>
-        <item>vote</item>
-        <item>attack</item>
-        <item>complete</item>
-        <item>develop</item>
-        <item>fit</item>
-        <item>inform</item>
-        <item>may</item>
-        <item>promise</item>
-        <item>return</item>
-        <item>state</item>
-        <item>wait</item>
-        <item>avoid</item>
-        <item>concern</item>
-        <item>die</item>
-        <item>fly</item>
-        <item>intend</item>
-        <item>mean</item>
-        <item>protect</item>
-        <item>reveal</item>
-        <item>stay</item>
-        <item>walk</item>
-        <item>base</item>
-        <item>confirm</item>
-        <item>disappear</item>
-        <item>fold</item>
-        <item>introduce</item>
-        <item>measure</item>
-        <item>prove</item>
-        <item>ring</item>
-        <item>stick</item>
-        <item>want</item>
-        <item>be</item>
-        <item>connect</item>
-        <item>discover</item>
-        <item>follow</item>
-        <item>invite</item>
-        <item>meet</item>
-        <item>provide</item>
-        <item>rise</item>
-        <item>stop</item>
-        <item>warn</item>
-        <item>beat</item>
-        <item>consider</item>
-        <item>discuss</item>
-        <item>force</item>
-        <item>involve</item>
-        <item>mention</item>
-        <item>publish</item>
-        <item>roll</item>
-        <item>study</item>
-        <item>wash</item>
-        <item>become</item>
-        <item>consist</item>
-        <item>divide</item>
-        <item>forget</item>
-        <item>join</item>
-        <item>might</item>
-        <item>pull</item>
-        <item>run</item>
-        <item>succeed</item>
-        <item>watch</item>
-        <item>begin</item>
-        <item>contact</item>
-        <item>do</item>
-        <item>forgive</item>
-        <item>jump</item>
-        <item>mind</item>
-        <item>push</item>
-        <item>save</item>
-        <item>suffer</item>
-        <item>wear</item>
-        <item>believe</item>
-        <item>contain</item>
-        <item>dress</item>
-        <item>form</item>
-        <item>keep</item>
-        <item>miss</item>
-        <item>put</item>
-        <item>say</item>
-        <item>suggest</item>
-        <item>will</item>
-        <item>belong</item>
-        <item>continue</item>
-        <item>drink</item>
-        <item>found</item>
-        <item>kick</item>
-        <item>move</item>
-        <item>raise</item>
-        <item>see</item>
-        <item>suit</item>
-        <item>win</item>
-        <item>break</item>
-        <item>contribute</item>
-        <item>drive</item>
-        <item>gain</item>
-        <item>kill</item>
-        <item>must</item>
-        <item>reach</item>
-        <item>seem</item>
-        <item>supply</item>
-        <item>wish</item>
-        <item>build</item>
-        <item>control</item>
-        <item>drop</item>
-        <item>get</item>
-        <item>knock</item>
-        <item>need</item>
-        <item>read</item>
-        <item>sell</item>
-        <item>support</item>
-        <item>wonder</item>
-        <item>burn</item>
-        <item>cook</item>
-        <item>eat</item>
-        <item>give</item>
-        <item>know</item>
-        <item>notice</item>
-        <item>realize</item>
-        <item>send</item>
-        <item>suppose</item>
-        <item>work</item>
-        <item>buy</item>
-        <item>copy</item>
-        <item>enable</item>
-        <item>go</item>
-        <item>last</item>
-        <item>obtain</item>
-        <item>receive</item>
-        <item>separate</item>
-        <item>survive</item>
-        <item>worry</item>
-        <item>call</item>
-        <item>correct</item>
-        <item>encourage</item>
-        <item>grow</item>
-        <item>laugh</item>
-        <item>occur</item>
-        <item>recognize</item>
-        <item>serve</item>
-        <item>take</item>
-        <item>would</item>
-        <item>can</item>
-        <item>cost</item>
-        <item>end</item>
-        <item>handle</item>
-        <item>lay</item>
-        <item>offer</item>
-        <item>record</item>
-        <item>set</item>
-        <item>talk</item>
-        <item>write</item>
-        <item>accuse</item>
-        <item>celebrate</item>
-        <item>disturb</item>
-        <item>file</item>
-        <item>light</item>
-        <item>promote</item>
-        <item>sail</item>
-        <item>switch</item>
-        <item>advise</item>
-        <item>combine</item>
-        <item>dominate</item>
-        <item>fire</item>
-        <item>list</item>
-        <item>question</item>
-        <item>satisfy</item>
-        <item>taste</item>
-        <item>appoint</item>
-        <item>comment</item>
-        <item>doubt</item>
-        <item>fix</item>
-        <item>lock</item>
-        <item>race</item>
-        <item>score</item>
-        <item>tear</item>
-        <item>appreciate</item>
-        <item>conclude</item>
-        <item>dream</item>
-        <item>flow</item>
-        <item>maintain</item>
-        <item>recommend</item>
-        <item>search</item>
-        <item>threaten</item>
-        <item>approach</item>
-        <item>conduct</item>
-        <item>dry</item>
-        <item>generate</item>
-        <item>marry</item>
-        <item>recover</item>
-        <item>seek</item>
-        <item>tie</item>
-        <item>arrest</item>
-        <item>construct</item>
-        <item>earn</item>
-        <item>grant</item>
-        <item>match</item>
-        <item>regret</item>
-        <item>sink</item>
-        <item>transfer</item>
-        <item>attempt</item>
-        <item>convince</item>
-        <item>elect</item>
-        <item>guess</item>
-        <item>mix</item>
-        <item>reject</item>
-        <item>slip</item>
-        <item>trust</item>
-        <item>attend</item>
-        <item>cope</item>
-        <item>emerge</item>
-        <item>hand</item>
-        <item>name</item>
-        <item>relax</item>
-        <item>smoke</item>
-        <item>vary</item>
-        <item>attract</item>
-        <item>criticize</item>
-        <item>employ</item>
-        <item>ignore</item>
-        <item>note</item>
-        <item>rely</item>
-        <item>solve</item>
-        <item>view</item>
-        <item>behave</item>
-        <item>dare</item>
+        <item>accept : приймати</item>
+        <item>add : додавати</item>
+        <item>admire : захоплюватися</item>
+        <item>admit : визнавати</item>
+        <item>advise : консультувати</item>
+        <item>afford : надавати, бути спроможним</item>
+        <item>agree : погоджуватися</item>
+        <item>alert : оголошувати тривогу</item>
+        <item>allow : дозволяти</item>
+        <item>amuse : розважати, забавляти</item>
+        <item>analyse : аналізувати</item>
+        <item>announce : оголошувати</item>
+        <item>annoy : дратувати</item>
+        <item>answer : відповідати</item>
+        <item>apologise : вибачатися</item>
+        <item>appear : з\'являтися</item>
+        <item>applaud : аплодувати</item>
+        <item>appreciate : цінувати</item>
+        <item>approve : затвердити</item>
+        <item>argue : сперечатися</item>
+        <item>arrange : домовитися</item>
+        <item>arrest : заарештувати</item>
+        <item>arrive : приїхати</item>
+        <item>ask : просити</item>
+        <item>attach : приєднувати</item>
+        <item>attack : нападати</item>
+        <item>attempt : намагатися</item>
+        <item>attend : бути присутнім</item>
+        <item>attract : вабити</item>
+        <item>avoid : уникнути</item>
+        <item>back : відступати</item>
+        <item>bake : пекти</item>
+        <item>balance : балансувати</item>
+        <item>ban : заборонити</item>
+        <item>bang : бити</item>
+        <item>bare : відкривати</item>
+        <item>bat : бити биткою</item>
+        <item>bathe : купатися</item>
+        <item>battle : битися, боротися</item>
+        <item>beam : сяяти, спрямовувати</item>
+        <item>beg : просити, благати</item>
+        <item>behave : вести себе</item>
+        <item>belong : належати</item>
+        <item>bleach : відбілювати</item>
+        <item>bless : благословити</item>
+        <item>blind : засліплювати, затемнювати</item>
+        <item>blink : блимати</item>
+        <item>blot : забруднитися</item>
+        <item>blush : зашарітися</item>
+        <item>boast : хвастощі</item>
+        <item>boil : кип\'ятити</item>
+        <item>bolt : летіти стрілою</item>
+        <item>bomb : бомбити</item>
+        <item>book : бронювати</item>
+        <item>bore : бурити, свердлити</item>
+        <item>borrow : запозичувати, позичати</item>
+        <item>bounce : підстрибувати</item>
+        <item>bow : присідати</item>
+        <item>box : упаковувати</item>
+        <item>brake : гальмувати</item>
+        <item>break : ламати, порушувати</item>
+        <item>branch : гілкуватися</item>
+        <item>breathe : дихати</item>
+        <item>bruise : набити синець</item>
+        <item>brush : малювати пензлем</item>
+        <item>bubble : пузиритися</item>
+        <item>bump : налітати, ударяти</item>
+        <item>burn : спалювати</item>
+        <item>bury : поховати</item>
+        <item>buzz : гудіти</item>
+        <item>calculate : обчислювати</item>
+        <item>call : викликати</item>
+        <item>camp : розташовуватися табором</item>
+        <item>care : доглядати</item>
+        <item>carry : нести</item>
+        <item>carve : різати</item>
+        <item>cause : спричиняти</item>
+        <item>challenge : кидати виклик</item>
+        <item>change : міняти</item>
+        <item>charge : стягувати</item>
+        <item>chase : переслідувати</item>
+        <item>cheat : обманювати</item>
+        <item>check : перевіряти</item>
+        <item>cheer : підбадьорювати</item>
+        <item>chew : жувати</item>
+        <item>choke : душити</item>
+        <item>chop : рубати</item>
+        <item>claim : вимагати, претендувати</item>
+        <item>clap : аплодувати</item>
+        <item>clean : чистити</item>
+        <item>clear : освітлювати, розчищати</item>
+        <item>clip : затискати, обрізати</item>
+        <item>close : замикати</item>
+        <item>coach : тренувати</item>
+        <item>coil : котушка</item>
+        <item>collect : збирати</item>
+        <item>colour : забарвлювати</item>
+        <item>comb : зачісувати</item>
+        <item>command : командувати</item>
+        <item>communicate : спілкуватися</item>
+        <item>compare : порівняти</item>
+        <item>compete : конкурувати</item>
+        <item>complain : поскаржитися</item>
+        <item>complete : завершувати</item>
+        <item>concentrate : сконцентрувати</item>
+        <item>concern : турбуватися</item>
+        <item>confess : сповідувати</item>
+        <item>confuse : сплутати</item>
+        <item>connect : підключати</item>
+        <item>consider : розглядати</item>
+        <item>consist : складатися</item>
+        <item>contain : містити</item>
+        <item>continue : продовжувати</item>
+        <item>copy : копіювати</item>
+        <item>correct : вірний</item>
+        <item>cough : кашляти</item>
+        <item>count : вважати</item>
+        <item>cover : кришка</item>
+        <item>crack : тріщина</item>
+        <item>crash : аварія</item>
+        <item>crawl : повзати</item>
+        <item>cross : хрест</item>
+        <item>crush : тиснява</item>
+        <item>cry : крик</item>
+        <item>cunt : сука, стерва</item>
+        <item>cure : лікування</item>
+        <item>curl : завити</item>
+        <item>curve : крива</item>
+        <item>cycle : цикл</item>
+        <item>dam : гребля</item>
+        <item>damage : пошкодження</item>
+        <item>dance : танець</item>
+        <item>dare : сміти</item>
+        <item>decay : розпад</item>
+        <item>deceive : обманювати</item>
+        <item>decide : вирішувати</item>
+        <item>decorate : прикрашати</item>
+        <item>delay : затримка</item>
+        <item>delight : захват</item>
+        <item>deliver : доставляти</item>
+        <item>depend : залежати</item>
+        <item>describe : описувати</item>
+        <item>desert : пустеля</item>
+        <item>deserve : заслуговувати</item>
+        <item>destroy : знищити</item>
+        <item>detect : виявити</item>
+        <item>develop : розвивати</item>
+        <item>disagree : не погоджуватися</item>
+        <item>disappear : зникати</item>
+        <item>disapprove : не затверджувати</item>
+        <item>disarm : роззброюватися</item>
+        <item>discover : відкрити</item>
+        <item>dislike : неприязнь</item>
+        <item>divide : ділити</item>
+        <item>double : подвійний</item>
+        <item>doubt : сумнів</item>
+        <item>drag : тягти</item>
+        <item>drain : дренаж</item>
+        <item>dream : мріяти</item>
+        <item>dress : плаття</item>
+        <item>drip : крапельний</item>
+        <item>drop : падіння</item>
+        <item>drown : тонути</item>
+        <item>drum : барабан</item>
+        <item>dry : сухий</item>
+        <item>dust : пил</item>
+        <item>earn : заробляти</item>
+        <item>educate : виховувати</item>
+        <item>embarrass : бентежити</item>
+        <item>employ : використовувати</item>
+        <item>empty : порожній</item>
+        <item>encourage : заохочувати</item>
+        <item>end : кінець</item>
+        <item>enjoy : насолоджуватися</item>
+        <item>enter : вводити</item>
+        <item>entertain : розважати</item>
+        <item>escape : втечу</item>
+        <item>examine : досліджувати</item>
+        <item>excite : порушувати</item>
+        <item>excuse : виправдання</item>
+        <item>exercise : вправа</item>
+        <item>exist : існувати</item>
+        <item>expand : розширювати</item>
+        <item>expect : очікувати</item>
+        <item>explain : пояснювати</item>
+        <item>explode : вибухнути</item>
+        <item>extend : продовжити</item>
+        <item>face : особа</item>
+        <item>fade : в\'янути</item>
+        <item>fail : провал</item>
+        <item>fancy : уяву</item>
+        <item>fasten : скріпити</item>
+        <item>fax : факс</item>
+        <item>fear : страх</item>
+        <item>fence : паркан</item>
+        <item>fetch : отримувати</item>
+        <item>file : файл</item>
+        <item>fill : заповнювати</item>
+        <item>film : фільм</item>
+        <item>fire : вогонь</item>
+        <item>fit : відповідати</item>
+        <item>fix : фіксувати</item>
+        <item>flap : заслінка</item>
+        <item>flash : спалах</item>
+        <item>float : поплавок</item>
+        <item>flood : повінь</item>
+        <item>flow : текти</item>
+        <item>flower : квітка</item>
+        <item>fold : скласти</item>
+        <item>follow : слідувати</item>
+        <item>fool : дурень</item>
+        <item>force : сила</item>
+        <item>form : форма</item>
+        <item>found : знайдено</item>
+        <item>frame : рамка</item>
+        <item>frighten : лякати</item>
+        <item>fry : смажити</item>
+        <item>gather : збирати</item>
+        <item>gaze : подивитися</item>
+        <item>glow : світіння</item>
+        <item>glue : клей</item>
+        <item>grab : захоплення</item>
+        <item>grate : решітка</item>
+        <item>grease : мастило</item>
+        <item>greet : вітати</item>
+        <item>grin : оскал</item>
+        <item>grip : рукоятка</item>
+        <item>groan : стогін</item>
+        <item>guarantee : гарантія</item>
+        <item>guard : охорона</item>
+        <item>guess : здогадуватися</item>
+        <item>guide : направляти</item>
+        <item>hammer : молоток</item>
+        <item>hand : рука</item>
+        <item>handle : обробляти</item>
+        <item>hang : вішати</item>
+        <item>happen : відбуватися</item>
+        <item>harass : турбувати</item>
+        <item>harm : шкоду</item>
+        <item>hate : ненавидіти</item>
+        <item>haunt : переслідувати</item>
+        <item>head : керівник</item>
+        <item>heal : зцілювати</item>
+        <item>heap : купа</item>
+        <item>heat : тепло</item>
+        <item>help : допомога</item>
+        <item>hook : гак</item>
+        <item>hop : хоп</item>
+        <item>hope : сподіватися</item>
+        <item>hover : зависати</item>
+        <item>hug : обійми</item>
+        <item>hum : гул</item>
+        <item>hunt : полювання</item>
+        <item>hurry : поспішати</item>
+        <item>identify : ідентифікувати</item>
+        <item>ignore : ігнорувати</item>
+        <item>imagine : уявити</item>
+        <item>impress : враження</item>
+        <item>improve : поліпшувати</item>
+        <item>include : включати</item>
+        <item>increase : збільшення</item>
+        <item>influence : вплив</item>
+        <item>inform : повідомити</item>
+        <item>inject : вводити</item>
+        <item>injure : поранити</item>
+        <item>instruct : інструктувати</item>
+        <item>intend : мати намір</item>
+        <item>interest : інтерес</item>
+        <item>interfere : втручатися</item>
+        <item>interrupt : переривати</item>
+        <item>introduce : вводити</item>
+        <item>invent : винаходити</item>
+        <item>invite : запрошувати</item>
+        <item>irritate : дратувати</item>
+        <item>itch : свербіж</item>
+        <item>jail : в\'язниця</item>
+        <item>jam : варення</item>
+        <item>jog : бігати підтюпцем</item>
+        <item>join : приєднатися</item>
+        <item>joke : жарт</item>
+        <item>judge : суддя</item>
+        <item>juggle : жонглювати</item>
+        <item>jump : стрибок</item>
+        <item>kick : удар</item>
+        <item>kill : вбивати</item>
+        <item>kiss : поцілунок</item>
+        <item>kneel : ставати на коліна</item>
+        <item>knit : в\'язати</item>
+        <item>knock : стукати</item>
+        <item>knot : вузол</item>
+        <item>label : етикетка</item>
+        <item>land : земля</item>
+        <item>last : останній</item>
+        <item>laugh : сміх</item>
+        <item>launch : запуск</item>
+        <item>learn : вчитися</item>
+        <item>level : рівень</item>
+        <item>license : ліцензія</item>
+        <item>lick : лизати</item>
+        <item>lie : брехня</item>
+        <item>lighten : світлішати</item>
+        <item>like : подібно</item>
+        <item>list : список</item>
+        <item>listen : слухати</item>
+        <item>live : жити</item>
+        <item>load : навантаження</item>
+        <item>lock : замикати</item>
+        <item>long : довго</item>
+        <item>look : дивитися</item>
+        <item>love : любов</item>
+        <item>man : людина</item>
+        <item>manage : управляти</item>
+        <item>march : марш</item>
+        <item>mark : знак</item>
+        <item>marry : одружитися</item>
+        <item>match : матч</item>
+        <item>mate : помічник</item>
+        <item>matter : справа</item>
+        <item>measure : вимірювати</item>
+        <item>meddle : втручатися</item>
+        <item>melt : розплав</item>
+        <item>memorise : запам\'ятовувати</item>
+        <item>mend : лагодити</item>
+        <item>mess up : зіпсувати</item>
+        <item>milk : молоко</item>
+        <item>mine : шахта</item>
+        <item>miss : міс</item>
+        <item>mix : змішувати</item>
+        <item>moan : стогнати</item>
+        <item>moor : пришвартуватися</item>
+        <item>mourn : оплакувати</item>
+        <item>move : рух</item>
+        <item>muddle : плутанина</item>
+        <item>mug : гуртка</item>
+        <item>multiply : помножити</item>
+        <item>murder : вбивство</item>
+        <item>nail : цвях</item>
+        <item>name : назва</item>
+        <item>need : потребувати</item>
+        <item>nest : гніздо</item>
+        <item>nod : кивок</item>
+        <item>note : примітка</item>
+        <item>notice : сповіщення</item>
+        <item>number : число</item>
+        <item>obey : коритися</item>
+        <item>object : об\'єкт</item>
+        <item>observe : спостерігати</item>
+        <item>obtain : отримувати</item>
+        <item>occur : відбуватися</item>
+        <item>offend : ображати</item>
+        <item>offer : пропозиція</item>
+        <item>open : відкритий</item>
+        <item>order : порядок</item>
+        <item>overflow : переповнення</item>
+        <item>owe : заборгувати</item>
+        <item>own : власний</item>
+        <item>pack : упаковка</item>
+        <item>paddle : весло</item>
+        <item>paint : фарба</item>
+        <item>park : парк</item>
+        <item>part : частина</item>
+        <item>pass : проходити</item>
+        <item>paste : паста</item>
+        <item>pat : поплескування</item>
+        <item>pause : пауза</item>
+        <item>peck : клювати</item>
+        <item>pedal : педаль</item>
+        <item>peel : шкірка</item>
+        <item>peep : писк</item>
+        <item>perform : виконувати</item>
+        <item>permit : дозвіл</item>
+        <item>phone : телефон</item>
+        <item>pick : вибирати</item>
+        <item>pinch : вщипнути</item>
+        <item>pine : сосна</item>
+        <item>place : місце</item>
+        <item>plan : план</item>
+        <item>plant : завод</item>
+        <item>play : грати</item>
+        <item>please : будь ласка</item>
+        <item>plug : вилка</item>
+        <item>point : точка</item>
+        <item>poke : пхати</item>
+        <item>polish : полірування</item>
+        <item>pop : поп</item>
+        <item>possess : володіти</item>
+        <item>post : пост</item>
+        <item>pour : лити</item>
+        <item>practise : практика</item>
+        <item>pray : молитися</item>
+        <item>preach : проповідувати</item>
+        <item>precede : передувати</item>
+        <item>prefer : віддавати перевагу</item>
+        <item>prepare : готувати</item>
+        <item>present : представляти</item>
+        <item>preserve : зберігати</item>
+        <item>press : прес</item>
+        <item>pretend : прикидатися</item>
+        <item>prevent : запобігати</item>
+        <item>prick : колоти</item>
+        <item>print : друкувати</item>
+        <item>produce : виробляти</item>
+        <item>program : програма</item>
+        <item>promise : обіцянку</item>
+        <item>protect : захищати</item>
+        <item>provide : забезпечувати</item>
+        <item>pull : тягнути</item>
+        <item>pump : насос</item>
+        <item>punch : удар</item>
+        <item>puncture : прокол</item>
+        <item>punish : покарати</item>
+        <item>push : поштовх</item>
+        <item>question : питання</item>
+        <item>queue : чергу</item>
+        <item>race : гонка</item>
+        <item>radiate : випромінювати</item>
+        <item>rain : дощ</item>
+        <item>raise : піднімати</item>
+        <item>reach : досягати</item>
+        <item>realise : реалізувати</item>
+        <item>receive : отримувати</item>
+        <item>recognise : визнавати</item>
+        <item>record : запис</item>
+        <item>reduce : зменшити</item>
+        <item>reflect : відображати</item>
+        <item>refuse : відмовлятися</item>
+        <item>regret : шкодувати</item>
+        <item>reign : царювати</item>
+        <item>reject : відкидати</item>
+        <item>rejoice : радіти</item>
+        <item>relax : відпочивати</item>
+        <item>release : реліз</item>
+        <item>rely : покладатися</item>
+        <item>remain : залишатися</item>
+        <item>remember : запам\'ятати</item>
+        <item>remind : нагадувати</item>
+        <item>remove : видаляти</item>
+        <item>repair : ремонт</item>
+        <item>repeat : повторення</item>
+        <item>replace : замінювати</item>
+        <item>reply : відповідь</item>
+        <item>report : звіт</item>
+        <item>reproduce : відтворювати</item>
+        <item>request : запит</item>
+        <item>rescue : порятунок</item>
+        <item>retire : йти у відставку</item>
+        <item>return : повернення</item>
+        <item>rhyme : рима</item>
+        <item>rinse : прополоскати</item>
+        <item>risk : ризик</item>
+        <item>rob : грабувати</item>
+        <item>rock : рок</item>
+        <item>roll : рулон</item>
+        <item>rot : гниль</item>
+        <item>rub : руб</item>
+        <item>ruin : руїни</item>
+        <item>rule : правило</item>
+        <item>rush : порив</item>
+        <item>sack : мішок</item>
+        <item>sail : вітрило</item>
+        <item>satisfy : задовольнити</item>
+        <item>save : економити</item>
+        <item>saw : пила</item>
+        <item>scare : паніка</item>
+        <item>scatter : розкид</item>
+        <item>scold : лаяти</item>
+        <item>scorch : опік</item>
+        <item>scrape : очистити</item>
+        <item>scratch : подряпина</item>
+        <item>scream : репетувати</item>
+        <item>screw : гвинт</item>
+        <item>scribble : каракулі</item>
+        <item>scrub : скраб</item>
+        <item>seal : друк</item>
+        <item>search : пошук</item>
+        <item>separate : окремий</item>
+        <item>serve : служити</item>
+        <item>settle : врегулювати</item>
+        <item>shade : тінь</item>
+        <item>share : частка</item>
+        <item>shave : голити</item>
+        <item>shelter : притулок</item>
+        <item>shiver : тремтіння</item>
+        <item>shock : шок</item>
+        <item>shop : магазин</item>
+        <item>shrug : знизування плечима</item>
+        <item>sigh : зітхання</item>
+        <item>sign : знак</item>
+        <item>signal : сигнал</item>
+        <item>sin : гріх</item>
+        <item>sip : ковток</item>
+        <item>ski : лижа</item>
+        <item>skip : пропускати</item>
+        <item>slap : ляпанець</item>
+        <item>slip : ковзання</item>
+        <item>slow : повільно</item>
+        <item>smash : банкрутство</item>
+        <item>smell : нюх</item>
+        <item>smile : посмішка</item>
+        <item>smoke : курити</item>
+        <item>snatch : урвати</item>
+        <item>sneeze : чхати</item>
+        <item>sniff : нюхати</item>
+        <item>snore : хропіння</item>
+        <item>snow : сніг</item>
+        <item>soak : вимочити</item>
+        <item>soothe : заспокоювати</item>
+        <item>sound : звук</item>
+        <item>spare : запасний</item>
+        <item>spark : іскра</item>
+        <item>sparkle : блиск</item>
+        <item>spell : заклинання</item>
+        <item>spill : пролиття</item>
+        <item>spoil : псувати</item>
+        <item>spot : місце</item>
+        <item>spray : спрей</item>
+        <item>sprout : паросток</item>
+        <item>squash : сквош</item>
+        <item>squeak : писк</item>
+        <item>squeal : вереск</item>
+        <item>squeeze : стиск</item>
+        <item>stain : пляма</item>
+        <item>stamp : друк</item>
+        <item>stare : дивитися</item>
+        <item>start : початок</item>
+        <item>stay : залишатися</item>
+        <item>steer : управляти</item>
+        <item>step : крок</item>
+        <item>stir : переполох</item>
+        <item>stitch : стібка</item>
+        <item>stop : зупинити</item>
+        <item>store : магазин</item>
+        <item>strap : ремінь</item>
+        <item>strengthen : зміцнювати</item>
+        <item>stretch : протяг</item>
+        <item>strip : смуга</item>
+        <item>stroke : хід</item>
+        <item>stuff : матеріал</item>
+        <item>subtract : віднімати</item>
+        <item>succeed : процвітати</item>
+        <item>suck : смоктати</item>
+        <item>suffer : страждати</item>
+        <item>suggest : пропонувати</item>
+        <item>suit : костюм</item>
+        <item>supply : поставка</item>
+        <item>support : підтримка</item>
+        <item>suppose : припускати</item>
+        <item>surprise : сюрприз</item>
+        <item>surround : оточити</item>
+        <item>suspect : підозрюваний</item>
+        <item>suspend : призупиняти</item>
+        <item>switch : перемикач</item>
+        <item>talk : розмова</item>
+        <item>tame : приручати</item>
+        <item>tap : кран</item>
+        <item>taste : смак</item>
+        <item>tease : дражнити</item>
+        <item>telephone : телефон</item>
+        <item>tempt : спокушати</item>
+        <item>terrify : устрашати</item>
+        <item>test : тест</item>
+        <item>thank : спасибі</item>
+        <item>thaw : відлига</item>
+        <item>tick : відзначте</item>
+        <item>tickle : лоскотати</item>
+        <item>tie : зв\'язати</item>
+        <item>time : час</item>
+        <item>tip : наконечник</item>
+        <item>tire : шина</item>
+        <item>touch : торкнутися</item>
+        <item>tour : тур</item>
+        <item>tow : буксир</item>
+        <item>trace : слід</item>
+        <item>trade : торгівля</item>
+        <item>train : поїзд</item>
+        <item>transport : транспорт</item>
+        <item>trap : пастка</item>
+        <item>travel : подорож</item>
+        <item>treat : лікувати</item>
+        <item>tremble : тремтіти</item>
+        <item>trick : трюк</item>
+        <item>trip : поїздка</item>
+        <item>trot : рись</item>
+        <item>trouble : біда</item>
+        <item>trust : довіру</item>
+        <item>try : намагатися</item>
+        <item>tug : буксир</item>
+        <item>tumble : падати</item>
+        <item>turn : поворот</item>
+        <item>twist : твіст</item>
+        <item>type : тип</item>
+        <item>undress : роздягатися</item>
+        <item>unfasten : відстібати</item>
+        <item>unite : об\'єднуватися</item>
+        <item>unlock : відімкнути</item>
+        <item>unpack : розпаковувати</item>
+        <item>untidy : неохайний</item>
+        <item>use : використовувати</item>
+        <item>vanish : зникати</item>
+        <item>visit : відвідувати</item>
+        <item>wail : вої</item>
+        <item>wait : чекати</item>
+        <item>walk : ходити</item>
+        <item>wander : блукати</item>
+        <item>want : хотіти</item>
+        <item>warm : теплий</item>
+        <item>warn : попереджати</item>
+        <item>wash : мити</item>
+        <item>waste : відходи</item>
+        <item>watch : дивитися</item>
+        <item>water : води</item>
+        <item>wave : хвиля</item>
+        <item>weigh : важити</item>
+        <item>welcome : ласкаво просимо</item>
+        <item>whine : скиглити</item>
+        <item>whip : батіг</item>
+        <item>whirl : вихор</item>
+        <item>whisper : шепіт</item>
+        <item>whistle : свисток</item>
+        <item>wink : подмигивание</item>
+        <item>wipe : протирати</item>
+        <item>wish : бажання</item>
+        <item>wobble : коливання</item>
+        <item>wonder : дивуватися, цікавитися</item>
+        <item>work : працювати</item>
+        <item>worry : турбуватися</item>
+        <item>wrap : обгортати</item>
+        <item>wreck : крах</item>
+        <item>wrestle : боротися</item>
+        <item>wriggle : звиватися</item>
+        <item>x-ray : рентгенівський</item>
+        <item>yawn : позіхати</item>
+        <item>yell : кричати</item>
+        <item>zip : застібати</item>
+        <item>zoom : зум</item>
 
     </string-array>
 </resources>

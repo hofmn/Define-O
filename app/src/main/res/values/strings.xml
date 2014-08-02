@@ -3,5 +3,6 @@
 
     <string name="app_name">DefineO</string>
     <string name="action_settings">Settings</string>
+    <string name="words_separator">:</string>
 
 </resources>

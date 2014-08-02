@@ -1,21 +1,19 @@
 package com.hofmn.defineo;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.TransitionDrawable;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.app.SearchManager;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,16 +26,25 @@ import java.util.Locale;
 
 public class MainFragment extends Fragment {
 
+    public static final int MY_DATA_CHECK_CODE = 0;
+    private static int wordIndex = 0;
     private TextSwitcher wordTextSwitcher;
     private ArrayList<String> words;
-
-    private static int wordIndex = 0;
-    public static final int MY_DATA_CHECK_CODE = 0;
-
     private TextToSpeech textToSpeech;
 
-    public static final String EXTRA_WORDS_LIST = "list";
-    public static final String EXTRA_INDEX = "index";
+    private String engWord;
+    private String ukrWord;
+
+    private Animation flipIn;
+    private Animation flipOut;
+    private Animation swipeIn;
+    private Animation swipeOut;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
     @Override
     public void onStart() {
@@ -50,19 +57,15 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        initializeWordsList(savedInstanceState);
+        initializeWordsList();
 
-        final String startText = (savedInstanceState == null)
-                ? "Tap to start"
-                : words.get(savedInstanceState.getInt(EXTRA_INDEX) - 1);
+        final String startText = "Tap to start";
 
         wordTextSwitcher = (TextSwitcher) view.findViewById(R.id.wordTextView);
 
-        Animation in = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
-        Animation out = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_out_right);
+        initializeAnimations();
 
-        wordTextSwitcher.setInAnimation(in);
-        wordTextSwitcher.setOutAnimation(out);
+        setWordTextSwitcher(AnimationType.Swipe);
 
         wordTextSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             public View makeView() {
@@ -76,10 +79,44 @@ public class MainFragment extends Fragment {
             }
         });
 
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
+
             @Override
-            public void onClick(View view) {
-                updateWordTextView();
+            public void onSwipeTop() {
+                updateWordTextView(true);
+            }
+
+            @Override
+            public void onSwipeRight() {
+                Toast.makeText(getActivity(), "right", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                Toast.makeText(getActivity(), "left", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeBottom() {
+                updateWordTextView(true);
+            }
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+
+            @Override
+            public void onTap() {
+                updateWordTextView(false);
+            }
+
+            @Override
+            public void onLongTap() {
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                String keyword = "define " + engWord;
+                intent.putExtra(SearchManager.QUERY, keyword);
+                startActivity(intent);
             }
         });
 
@@ -92,27 +129,30 @@ public class MainFragment extends Fragment {
         textToSpeech.shutdown();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putStringArrayList(EXTRA_WORDS_LIST, words);
-        outState.putInt(EXTRA_INDEX, wordIndex);
-    }
+    private void updateWordTextView(boolean shouldTranslate) {
 
-    private void updateWordTextView() {
-        String word;
+        setWordTextSwitcher(shouldTranslate ? AnimationType.Flip : AnimationType.Swipe);
 
-        if (wordIndex < words.size()) {
-            word = words.get(wordIndex++);
-            wordTextSwitcher.setText(word);
+        if (shouldTranslate) {
+            ukrWord = words.get(wordIndex).split(getString(R.string.words_separator))[1];
+            engWord = words.get(wordIndex).split(getString(R.string.words_separator))[0];
+            String currentWord = (String) ((TextView) wordTextSwitcher.getCurrentView()).getText();
+            wordTextSwitcher.setText(currentWord.equals(ukrWord) ? engWord : ukrWord);
         } else {
-            Collections.shuffle(words);
-            wordIndex = 0;
-            word = words.get(wordIndex);
-            wordTextSwitcher.setText(word);
+            if (wordIndex < words.size()) {
+                wordIndex++;
+            } else {
+                Collections.shuffle(words);
+                wordIndex = 0;
+            }
+
+            engWord = words.get(wordIndex).split(getString(R.string.words_separator))[0];
+            wordTextSwitcher.setText(engWord);
+            speakWord(engWord);
         }
 
-        speakWord(word);
+        // TODO: Remove this log
+        Log.d("MainFragment", engWord + " : " + ukrWord);
     }
 
     private void speakWord(String word) {
@@ -146,19 +186,36 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void initializeWordsList(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            String[] stringArray = getResources().getStringArray(R.array.popular_english_verbs);
-            words = new ArrayList<String>(Arrays.asList(stringArray));
-            Collections.shuffle(words);
-        } else {
-            words = savedInstanceState.getStringArrayList(EXTRA_WORDS_LIST);
-        }
+    private void initializeWordsList() {
+        String[] stringArray = getResources().getStringArray(R.array.popular_english_verbs);
+        words = new ArrayList<String>(Arrays.asList(stringArray));
+        Collections.shuffle(words);
     }
 
     private void initializeTextToSpeech() {
         Intent checkTTSIntent = new Intent();
         checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkTTSIntent, MY_DATA_CHECK_CODE);
+    }
+
+    private void initializeAnimations() {
+        swipeIn = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
+        swipeOut = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_out_right);
+
+        flipIn = AnimationUtils.loadAnimation(getActivity(), R.anim.grow);
+        flipOut = AnimationUtils.loadAnimation(getActivity(), R.anim.shrink);
+    }
+
+    private void setWordTextSwitcher(AnimationType animationType) {
+        switch (animationType) {
+            case Flip:
+                wordTextSwitcher.setInAnimation(flipIn);
+                wordTextSwitcher.setOutAnimation(flipOut);
+                break;
+            case Swipe:
+                wordTextSwitcher.setInAnimation(swipeIn);
+                wordTextSwitcher.setOutAnimation(swipeOut);
+                break;
+        }
     }
 }
