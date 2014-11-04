@@ -1,15 +1,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_alizarin"
-    android:id="@+id/word_layout">
+    tools:context="com.hofmn.defineo.fragments.MainFragment">
 
-    <TextSwitcher
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <View
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/startTrainingTextView"
+        android:background="#e0e0e0" />
+
+    <TextView
+        android:id="@+id/startTrainingTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:id="@+id/wordTextView"
-        android:textColor="@color/color_clouds"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingBottom="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingTop="32dp"
+        android:text="@string/start_training"
+        android:textAllCaps="true"
+        android:textColor="#536dfe"
+        android:textSize="16sp" />
 
 </RelativeLayout>
