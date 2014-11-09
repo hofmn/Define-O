@@ -6,12 +6,11 @@
     tools:context="com.hofmn.defineo.fragments.WordCardFragment">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/definition_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_margin="32dp"
+        android:layout_margin="64dp"
         android:foreground="?android:attr/selectableItemBackground"
         card_view:cardCornerRadius="0dp"
         card_view:contentPaddingBottom="16dp"
@@ -19,7 +18,7 @@
         card_view:contentPaddingRight="32dp"
         card_view:contentPaddingTop="16dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -29,18 +28,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
-                android:textColor="@color/accent_color"
+                android:textColor="@color/accent_color_one"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/translationTextView"
+            <ListView
+                android:id="@+id/translationsListView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/app_name"
-                android:textColor="@color/text_color"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:layout_height="200dp"
+                android:layout_below="@+id/wordToTranslateTextView"
+                android:divider="@null"
+                android:dividerHeight="8dp"
+                android:nestedScrollingEnabled="false"
+                android:paddingTop="8dp"
+                android:scrollbarStyle="outsideOverlay" />
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 </RelativeLayout>

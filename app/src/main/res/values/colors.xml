@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ripple_color">#3f51b5</color>
-    <color name="accent_color">#e91e63</color>
+    <color name="accent_color_one">#e91e63</color>
+    <color name="accent_color_two">#009688</color>
+    <color name="accent_color_three">#e91e63</color>
     <color name="primary_color">#3f51b5</color>
     <color name="secondary_color">#0288d1</color>
     <color name="text_color">#616161</color>
+    <color name="button_text_color">#536dfe</color>
 </resources>

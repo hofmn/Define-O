@@ -1,21 +1,21 @@
 package com.hofmn.defineo;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hofmn.defineo.fragments.MainFragment;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new MainFragment())
                     .commit();
         }

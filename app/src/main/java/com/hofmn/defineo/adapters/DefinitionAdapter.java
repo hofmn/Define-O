@@ -9,14 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.hofmn.defineo.R;
+import com.hofmn.defineo.data.model.Definition;
 
 import java.util.ArrayList;
 
-public class DefinitionAdapter extends ArrayAdapter<String> {
+public class DefinitionAdapter extends ArrayAdapter<Definition> {
     private final Activity context;
-    private final ArrayList<String> definitions;
+    private final ArrayList<Definition> definitions;
 
-    public DefinitionAdapter(Activity context, ArrayList<String> definitions) {
+    public DefinitionAdapter(Activity context, ArrayList<Definition> definitions) {
         super(context, R.layout.definition_list_item, definitions);
         this.context = context;
         this.definitions = definitions;
@@ -43,9 +44,9 @@ public class DefinitionAdapter extends ArrayAdapter<String> {
         }
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
-        String definition = definitions.get(position);
-        String context = definitions.get(position);
-        holder.contextText.setText("\"" + context.replace("definition", "context") + "\"");
+        String definition = definitions.get(position).getDefinition();
+        String context = definitions.get(position).getContext();
+        holder.contextText.setText("\"" + context + "\"");
         holder.definitionText.setText(definition);
         holder.numberText.setText(Integer.toString(position + 1) + ".");
 

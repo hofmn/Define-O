@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="CustomActionBarTheme">
         <!-- Customize your theme here. -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
 </resources>

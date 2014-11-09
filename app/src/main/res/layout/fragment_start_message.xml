@@ -27,7 +27,7 @@
                 android:id="@+id/trainingStartedWelcome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Тренування розпочато!"
+                android:text="@string/training_started_message"
                 android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Свайпніть убік, щоб переглянути перше слово"
+                android:text="@string/training_started_instruction_message"
                 android:textColor="@color/text_color"
                 android:textSize="20sp" />
         </LinearLayout>

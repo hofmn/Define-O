@@ -8,14 +8,11 @@ import android.view.MenuItem;
 
 import com.hofmn.defineo.fragments.DefinitionFragment;
 import com.hofmn.defineo.fragments.TrainingFragment;
-import com.hofmn.defineo.fragments.TranslateFragment;
+import com.hofmn.defineo.fragments.TranslationFragment;
 import com.hofmn.defineo.fragments.WordCardFragment;
 
 public class TrainingActivity extends FragmentActivity
         implements WordCardFragment.OnWordClick, DefinitionFragment.OnShowTranslationClicked {
-
-    public static final String MY_PREFS = "prefs";
-    public static final String IS_DEFINITION_SHOWN = "definition";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +39,8 @@ public class TrainingActivity extends FragmentActivity
                 FragmentManager fm = getSupportFragmentManager();
                 if (fm.getBackStackEntryCount() > 0) {
                     fm.popBackStack();
+                } else {
+                    finish();
                 }
                 return true;
             default:
@@ -56,7 +55,7 @@ public class TrainingActivity extends FragmentActivity
 
     @Override
     public void onShowTranslation(String word) {
-        showFragment(TranslateFragment.newInstance(word));
+        showFragment(TranslationFragment.newInstance(word));
     }
 
     private void showFragment(Fragment fragment) {

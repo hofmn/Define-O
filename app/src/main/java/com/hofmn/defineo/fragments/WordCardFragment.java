@@ -54,7 +54,6 @@ public class WordCardFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_word_card, container, false);
 
         word = getArguments().getString(WORD_KEY);
-        word = word.substring(0, word.length() - 1);
 
         rootView.findViewById(R.id.word_card_view).setOnClickListener(new View.OnClickListener() {
             @Override

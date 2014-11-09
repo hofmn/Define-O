@@ -5,14 +5,18 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
 import com.hofmn.defineo.adapters.DefinitionAdapter;
+import com.hofmn.defineo.data.model.Definition;
+import com.hofmn.defineo.data.model.WordData;
 
 import java.util.ArrayList;
 
@@ -23,7 +27,7 @@ import java.util.ArrayList;
 public class DefinitionFragment extends Fragment {
 
     private String word;
-    private ArrayList<String> definitions;
+    private ArrayList<Definition> definitions;
 
     private OnShowTranslationClicked callback;
 
@@ -39,6 +43,11 @@ public class DefinitionFragment extends Fragment {
         fragment.setArguments(args);
 
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -61,11 +70,7 @@ public class DefinitionFragment extends Fragment {
 
         word = getArguments().getString(WordCardFragment.WORD_KEY);
 
-        definitions = new ArrayList<String>();
-
-        for (int i = 0; i < 2; i++) {
-            definitions.add("This is definition for word " + word);
-        }
+        definitions = getDefinitionsForWord(word);
 
         ListView definitionListView = (ListView) rootView.findViewById(R.id.definitionsListView);
         definitionListView.setAdapter(new DefinitionAdapter(getActivity(), definitions));
@@ -83,7 +88,19 @@ public class DefinitionFragment extends Fragment {
             }
         });
 
+
         return rootView;
+    }
+
+    private ArrayList<Definition> getDefinitionsForWord(String word) {
+        ArrayList<WordData> data = DefineoApp.getInstance().getData();
+        for (WordData wordData : data) {
+            if (wordData.getWord().getWord().equals(word)) {
+                Log.d("DefinitionFragment", String.valueOf(wordData.getDefinitions().size()));
+                return wordData.getDefinitions();
+            }
+        }
+        return null;
     }
 
     public interface OnShowTranslationClicked {

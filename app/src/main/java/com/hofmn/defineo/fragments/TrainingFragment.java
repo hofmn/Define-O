@@ -9,15 +9,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
+import com.hofmn.defineo.data.model.WordData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 
@@ -32,16 +34,18 @@ public class TrainingFragment extends Fragment {
     private PagerAdapter mPagerAdapter;
     private int pagesCount;
 
+    private boolean canSpeak;
+
     @Override
     public void onStart() {
         super.onStart();
         initializeTextToSpeech();
+        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     @Override
@@ -58,7 +62,7 @@ public class TrainingFragment extends Fragment {
         }
 
         mPager = (ViewPager) view.findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager());
+        mPagerAdapter = new WordSlidePagerAdapter(getChildFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -68,12 +72,8 @@ public class TrainingFragment extends Fragment {
 
             @Override
             public void onPageSelected(int i) {
-
                 if (i > 0) {
-                    String word = words.get(i - 1)
-                            .split(getString(R.string.words_separator))[0];
-                    word = word.substring(0, word.length() - 1);
-                    speakWord(word);
+                    speakWord(words.get(i - 1));
                 }
             }
 
@@ -92,14 +92,20 @@ public class TrainingFragment extends Fragment {
             if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 textToSpeech = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
                     @Override
-                    public void onInit(int i) {
-                        if (i == TextToSpeech.SUCCESS) {
-                            textToSpeech.setLanguage(Locale.US);
-                        } else if (i == TextToSpeech.ERROR) {
-                            Toast.makeText(getActivity(), "Text To Speech failed...",
-                                    Toast.LENGTH_SHORT)
-                                    .show();
-                        }
+                    public void onInit(final int i) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (i == TextToSpeech.SUCCESS) {
+                                    textToSpeech.setLanguage(Locale.US);
+                                    canSpeak = true;
+                                } else if (i == TextToSpeech.ERROR) {
+                                    Toast.makeText(getActivity(), "Text To Speech failed...",
+                                            Toast.LENGTH_SHORT)
+                                            .show();
+                                }
+                            }
+                        }).start();
                     }
                 });
             } else {
@@ -117,9 +123,13 @@ public class TrainingFragment extends Fragment {
     }
 
     private void initializeWordsList() {
-        String[] stringArray = getResources().getStringArray(R.array.popular_english_verbs);
-        words = new ArrayList<String>(Arrays.asList(stringArray));
-        pagesCount = words.size();
+        ArrayList<WordData> data = DefineoApp.getInstance().getData();
+
+        words = new ArrayList<String>();
+        for (WordData dataObject : data) {
+            words.add(dataObject.getWord().getWord());
+        }
+        pagesCount = words.size() + 1;
         Collections.shuffle(words);
     }
 
@@ -127,18 +137,19 @@ public class TrainingFragment extends Fragment {
         Intent checkTTSIntent = new Intent();
         checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkTTSIntent, MY_DATA_CHECK_CODE);
+        Log.d("TrainingFragment", "initTTS");
     }
 
     private void speakWord(String word) {
-        if (textToSpeech != null) {
+        if (textToSpeech != null && canSpeak) {
             //textToSpeech.setSpeechRate(0.5f); // funny voice :)
             textToSpeech.setPitch(1.3f);
             textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+    private class WordSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public WordSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -148,8 +159,7 @@ public class TrainingFragment extends Fragment {
                 case 0:
                     return new StartMessageFragment();
                 default:
-                    return WordCardFragment.newInstance(words.get(position - 1)
-                            .split(getString(R.string.words_separator))[0]);
+                    return WordCardFragment.newInstance(words.get(position - 1));
             }
         }
 
