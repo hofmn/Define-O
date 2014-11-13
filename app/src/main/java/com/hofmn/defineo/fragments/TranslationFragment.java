@@ -1,6 +1,8 @@
 package com.hofmn.defineo.fragments;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
+import com.hofmn.defineo.TrainingActivity;
 import com.hofmn.defineo.adapters.TranslationAdapter;
 import com.hofmn.defineo.data.model.Translation;
 import com.hofmn.defineo.data.model.WordData;
@@ -42,6 +45,7 @@ public class TranslationFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_translation, container, false);
 
+        getActivity().setTitle("Переклад слова");
         String word = getArguments().getString(WordCardFragment.WORD_KEY);
 
         ArrayList<Translation> translations = getTranslationForWord(word);
@@ -50,6 +54,9 @@ public class TranslationFragment extends Fragment {
         listView.setAdapter(new TranslationAdapter(getActivity(), translations));
 
         ((TextView) rootView.findViewById(R.id.wordToTranslateTextView)).setText(word);
+
+        ((TrainingActivity) getActivity()).getSupportActionBar()
+                .setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
 
         return rootView;
     }

@@ -1,8 +1,9 @@
 package com.hofmn.defineo.fragments;
 
-
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,16 +15,13 @@ import android.widget.TextView;
 
 import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
+import com.hofmn.defineo.TrainingActivity;
 import com.hofmn.defineo.adapters.DefinitionAdapter;
 import com.hofmn.defineo.data.model.Definition;
 import com.hofmn.defineo.data.model.WordData;
 
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DefinitionFragment extends Fragment {
 
     private String word;
@@ -69,6 +67,12 @@ public class DefinitionFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_definition, container, false);
 
         word = getArguments().getString(WordCardFragment.WORD_KEY);
+
+        getActivity().setTitle("Визначення слова");
+
+        ((TrainingActivity) getActivity())
+                .getSupportActionBar()
+                .setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2196F3")));
 
         definitions = getDefinitionsForWord(word);
 

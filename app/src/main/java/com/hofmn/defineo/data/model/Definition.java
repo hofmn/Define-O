@@ -1,14 +1,35 @@
 package com.hofmn.defineo.data.model;
 
 public class Definition {
+
+    private int id;
+    private int wordId;
     private String definition;
     private String context;
-    private String type;
 
-    public Definition(String definition, String context, String type) {
+    public Definition(String definition, String context) {
         this.definition = definition;
         this.context = context;
-        this.type = type;
+    }
+
+    public Definition() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getWordId() {
+        return wordId;
+    }
+
+    public void setWordId(int wordId) {
+        this.wordId = wordId;
     }
 
     public String getDefinition() {
@@ -25,13 +46,5 @@ public class Definition {
 
     public void setContext(String context) {
         this.context = context;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }

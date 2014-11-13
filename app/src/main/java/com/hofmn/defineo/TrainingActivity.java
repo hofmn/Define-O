@@ -2,8 +2,9 @@ package com.hofmn.defineo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hofmn.defineo.fragments.DefinitionFragment;
@@ -11,7 +12,7 @@ import com.hofmn.defineo.fragments.TrainingFragment;
 import com.hofmn.defineo.fragments.TranslationFragment;
 import com.hofmn.defineo.fragments.WordCardFragment;
 
-public class TrainingActivity extends FragmentActivity
+public class TrainingActivity extends ActionBarActivity
         implements WordCardFragment.OnWordClick, DefinitionFragment.OnShowTranslationClicked {
 
     @Override
@@ -22,12 +23,16 @@ public class TrainingActivity extends FragmentActivity
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
         if (fragment == null) {
             fragment = new TrainingFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 

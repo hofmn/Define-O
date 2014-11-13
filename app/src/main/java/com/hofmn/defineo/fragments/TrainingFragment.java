@@ -1,6 +1,7 @@
 package com.hofmn.defineo.fragments;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
+import com.hofmn.defineo.TrainingActivity;
 import com.hofmn.defineo.data.model.WordData;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class TrainingFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        getActivity().setTitle("Тренування");
         initializeTextToSpeech();
         getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
@@ -82,6 +85,10 @@ public class TrainingFragment extends Fragment {
 
             }
         });
+
+        ((TrainingActivity) getActivity()).getSupportActionBar()
+                .setBackgroundDrawable(new ColorDrawable(getResources()
+                        .getColor(R.color.primary_color)));
 
         return view;
     }

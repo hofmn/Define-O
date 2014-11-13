@@ -7,6 +7,10 @@ public class WordData {
     private ArrayList<Definition> definitions;
     private ArrayList<Translation> translations;
 
+    public WordData() {
+
+    }
+
     public WordData(Word word, ArrayList<Definition> definitions, ArrayList<Translation> translations) {
         this.word = word;
         this.definitions = definitions;
