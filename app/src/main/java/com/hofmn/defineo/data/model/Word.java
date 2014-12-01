@@ -1,9 +1,12 @@
 package com.hofmn.defineo.data.model;
 
+import java.util.Date;
+
 public class Word {
     private int id;
     private String word;
-    private String addedDate;
+    private Date addedDate;
+    private LearningPhase learningPhase;
 
     public Word() {
 
@@ -21,11 +24,11 @@ public class Word {
         this.id = id;
     }
 
-    public String getAddedDate() {
+    public Date getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(String addedDate) {
+    public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
 
@@ -35,5 +38,17 @@ public class Word {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public LearningPhase getLearningPhase() {
+        return learningPhase;
+    }
+
+    public void setLearningPhase(LearningPhase learningPhase) {
+        this.learningPhase = learningPhase;
+    }
+
+    public static enum LearningPhase {
+        Learn, Repeat, None
     }
 }

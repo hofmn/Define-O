@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
 import com.hofmn.defineo.TrainingActivity;
+import com.hofmn.defineo.WordsManager;
 import com.hofmn.defineo.adapters.TranslationAdapter;
 import com.hofmn.defineo.data.model.Translation;
 import com.hofmn.defineo.data.model.WordData;
@@ -62,7 +62,7 @@ public class TranslationFragment extends Fragment {
     }
 
     private ArrayList<Translation> getTranslationForWord(String word) {
-        ArrayList<WordData> data = DefineoApp.getInstance().getData();
+        ArrayList<WordData> data = WordsManager.getInstance().getData();
         for (WordData wordData : data) {
             if (wordData.getWord().getWord().equals(word)) {
                 return wordData.getTranslations();

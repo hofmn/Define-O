@@ -1,8 +1,6 @@
 package com.hofmn.defineo.fragments;
 
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
@@ -10,40 +8,34 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
 import com.hofmn.defineo.TrainingActivity;
+import com.hofmn.defineo.WordsManager;
+import com.hofmn.defineo.data.model.Word;
 import com.hofmn.defineo.data.model.WordData;
+import com.hofmn.defineo.data.model.db.DatabaseHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
 
 public class TrainingFragment extends Fragment {
 
-    public static final int MY_DATA_CHECK_CODE = 0;
+    DatabaseHandler databaseHandler;
     private TextToSpeech textToSpeech;
-
-    private ArrayList<String> words;
-
+    private ArrayList<String> wordsList;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private int pagesCount;
-
-    private boolean canSpeak;
+    private String lastWord;
 
     @Override
     public void onStart() {
         super.onStart();
         getActivity().setTitle("Тренування");
-        initializeTextToSpeech();
-        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     @Override
@@ -56,13 +48,13 @@ public class TrainingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training, container, false);
 
-        if (textToSpeech == null) {
-            initializeTextToSpeech();
-        }
+        textToSpeech = WordsManager.getInstance().getTextToSpeech();
 
-        if (words == null) {
+        if (wordsList == null) {
             initializeWordsList();
         }
+
+        databaseHandler = new DatabaseHandler(getActivity());
 
         mPager = (ViewPager) view.findViewById(R.id.pager);
         mPagerAdapter = new WordSlidePagerAdapter(getChildFragmentManager());
@@ -75,8 +67,16 @@ public class TrainingFragment extends Fragment {
 
             @Override
             public void onPageSelected(int i) {
-                if (i > 0) {
-                    speakWord(words.get(i - 1));
+                if (i != 0 && i < pagesCount - 1) {
+                    WordsManager.getInstance().updateStatsWordViews(true);
+                    speakWord(wordsList.get(i - 1));
+                    lastWord = wordsList.get(i - 1);
+                }
+
+                if (i > 1 && i < pagesCount) {
+                    String word = wordsList.get(i - 2);
+                    WordsManager.getInstance().addToLearningPhaseMap(word,
+                            Word.LearningPhase.Repeat);
                 }
             }
 
@@ -93,64 +93,21 @@ public class TrainingFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MY_DATA_CHECK_CODE) {
-            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
-                textToSpeech = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(final int i) {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (i == TextToSpeech.SUCCESS) {
-                                    textToSpeech.setLanguage(Locale.US);
-                                    canSpeak = true;
-                                } else if (i == TextToSpeech.ERROR) {
-                                    Toast.makeText(getActivity(), "Text To Speech failed...",
-                                            Toast.LENGTH_SHORT)
-                                            .show();
-                                }
-                            }
-                        }).start();
-                    }
-                });
-            } else {
-                Intent installTTSIntent = new Intent();
-                installTTSIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-                startActivity(installTTSIntent);
-            }
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        textToSpeech.shutdown();
-    }
-
     private void initializeWordsList() {
-        ArrayList<WordData> data = DefineoApp.getInstance().getData();
+        ArrayList<WordData> data = WordsManager.getInstance().getData();
 
-        words = new ArrayList<String>();
+        wordsList = new ArrayList<String>();
+
         for (WordData dataObject : data) {
-            words.add(dataObject.getWord().getWord());
+            wordsList.add(dataObject.getWord().getWord());
         }
-        pagesCount = words.size() + 1;
-        Collections.shuffle(words);
-    }
 
-    private void initializeTextToSpeech() {
-        Intent checkTTSIntent = new Intent();
-        checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-        startActivityForResult(checkTTSIntent, MY_DATA_CHECK_CODE);
-        Log.d("TrainingFragment", "initTTS");
+        pagesCount = wordsList.size() + 2;
+        Collections.shuffle(wordsList);
     }
 
     private void speakWord(String word) {
-        if (textToSpeech != null && canSpeak) {
-            //textToSpeech.setSpeechRate(0.5f); // funny voice :)
-            textToSpeech.setPitch(1.3f);
+        if (textToSpeech != null && !word.equals(lastWord)) {
             textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
@@ -162,11 +119,12 @@ public class TrainingFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new StartMessageFragment();
-                default:
-                    return WordCardFragment.newInstance(words.get(position - 1));
+            if (position == 0) {
+                return new StartMessageFragment();
+            } else if (position == getCount() - 1) {
+                return new EndMessageFragment();
+            } else {
+                return WordCardFragment.newInstance(wordsList.get(position - 1));
             }
         }
 

@@ -1,0 +1,19 @@
+<resources>
+    <string name="title_activity_settings">Налаштування</string>
+
+    <string name="pref_title_repeat_frequency">Термін повторення (год.)</string>
+    <string-array name="pref_repeat_frequency_titles">
+        <item>1 хвилина</item>
+        <item>6 годин</item>
+        <item>12 годин</item>
+        <item>18 годин</item>
+        <item>24 години</item>
+    </string-array>
+    <string-array name="pref_repeat_frequency_values">
+        <item>0.016667</item>
+        <item>6</item>
+        <item>12</item>
+        <item>18</item>
+        <item>24</item>
+    </string-array>
+</resources>

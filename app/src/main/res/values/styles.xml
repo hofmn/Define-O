@@ -5,4 +5,10 @@
         <item name="android:windowBackground">@color/background_floating_material_light</item>
     </style>
 
+    <style name="PagerTabStripText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+    </style>
+
 </resources>

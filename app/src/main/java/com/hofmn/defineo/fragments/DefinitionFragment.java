@@ -6,16 +6,15 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hofmn.defineo.DefineoApp;
 import com.hofmn.defineo.R;
 import com.hofmn.defineo.TrainingActivity;
+import com.hofmn.defineo.WordsManager;
 import com.hofmn.defineo.adapters.DefinitionAdapter;
 import com.hofmn.defineo.data.model.Definition;
 import com.hofmn.defineo.data.model.WordData;
@@ -72,7 +71,7 @@ public class DefinitionFragment extends Fragment {
 
         ((TrainingActivity) getActivity())
                 .getSupportActionBar()
-                .setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2196F3")));
+                .setBackgroundDrawable(new ColorDrawable(Color.parseColor("#03A9F4")));
 
         definitions = getDefinitionsForWord(word);
 
@@ -97,10 +96,9 @@ public class DefinitionFragment extends Fragment {
     }
 
     private ArrayList<Definition> getDefinitionsForWord(String word) {
-        ArrayList<WordData> data = DefineoApp.getInstance().getData();
+        ArrayList<WordData> data = WordsManager.getInstance().getData();
         for (WordData wordData : data) {
             if (wordData.getWord().getWord().equals(word)) {
-                Log.d("DefinitionFragment", String.valueOf(wordData.getDefinitions().size()));
                 return wordData.getDefinitions();
             }
         }

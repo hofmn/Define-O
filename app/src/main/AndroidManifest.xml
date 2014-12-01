@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TrainingActivity"
+            android:name="com.hofmn.defineo.TrainingActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -27,6 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.hofmn.defineo.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@android:style/Theme.Holo.Light"></activity>
     </application>
 
 </manifest>

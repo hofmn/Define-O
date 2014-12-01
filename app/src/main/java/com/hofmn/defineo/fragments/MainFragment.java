@@ -1,10 +1,12 @@
 package com.hofmn.defineo.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,11 +15,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.hofmn.defineo.DefineoApp;
+import com.hofmn.defineo.MainActivity;
 import com.hofmn.defineo.R;
+import com.hofmn.defineo.SettingsActivity;
 import com.hofmn.defineo.TrainingActivity;
+import com.hofmn.defineo.WordsManager;
 import com.hofmn.defineo.data.model.Definition;
 import com.hofmn.defineo.data.model.Translation;
 import com.hofmn.defineo.data.model.Word;
@@ -35,16 +42,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainFragment extends Fragment {
 
-    public static final int STATS_FRAGMENTS_COUNT = 3;
-
-    protected ProgressDialog waitDialog;
+    public static final int STATS_FRAGMENTS_COUNT = 2;
+    public static final int MY_DATA_CHECK_CODE = 0;
     protected ArrayList<WordData> data;
     protected DatabaseHandler databaseHandler;
+    private RelativeLayout contentLayout;
+    private RelativeLayout noWordsLayout;
+    private ProgressBar progressBar;
 
-    private String[] titles = {"СЬОГОДНІ", "ВЧОРА", "МІСЯЦЬ"};
+    private TextToSpeech textToSpeech;
+
+    private String[] titles = {"ПОТОЧНІ РЕЗУЛЬТАТИ", "ПЕРЕГЛЯДИ"};
 
     public MainFragment() {
     }
@@ -53,22 +65,35 @@ public class MainFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        setRepeatTime();
+
         databaseHandler = new DatabaseHandler(getActivity());
-        //databaseHandler.dropAllTables();
 
         boolean dbExist = DatabaseHandler.doesDatabaseExist(getActivity(),
                 DatabaseHandler.getDbName());
 
-        if (data == null) {
-            if (!dbExist) {
-                data = new ArrayList<WordData>();
-                new FetchWordsTask().execute();
-            } else {
-                data = new ArrayList<WordData>(databaseHandler.getAllWords());
-                DefineoApp.getInstance().setData(data);
-                Log.d("MainFragment", String.valueOf(data.size()));
+        if (!dbExist) {
+            data = new ArrayList<WordData>();
+            new FetchWordsTask().execute();
+        } else {
+            data = new ArrayList<WordData>(databaseHandler.getAllWords());
+            if (data.size() == 0) {
+                contentLayout.setVisibility(View.GONE);
+                noWordsLayout.setVisibility(View.VISIBLE);
+                ((MainActivity) getActivity()).getSupportActionBar().hide();
             }
+            WordsManager.getInstance().setData(data);
+            Log.d("MainFragment", String.valueOf(data.size()));
         }
+
+
+        if (textToSpeech == null) {
+            new InitTtsTask().execute();
+        }
+
+        WordsManager.getInstance().clearLearningPhaseMap();
+
+        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     @Override
@@ -77,6 +102,10 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         getActivity().setTitle("Статистика");
+
+        progressBar = (ProgressBar) rootView.findViewById(R.id.loadingProgress);
+        contentLayout = (RelativeLayout) rootView.findViewById(R.id.mainContentLayout);
+        noWordsLayout = (RelativeLayout) rootView.findViewById(R.id.noWordsLayout);
 
         TextView startTextView = (TextView) rootView.findViewById(R.id.startTrainingTextView);
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),
@@ -97,6 +126,56 @@ public class MainFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MY_DATA_CHECK_CODE) {
+            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+                textToSpeech = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(final int i) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (i == TextToSpeech.SUCCESS) {
+                                    textToSpeech.setLanguage(Locale.US);
+                                    WordsManager.getInstance().setTTS(textToSpeech);
+                                    contentLayout.setVisibility(View.VISIBLE);
+                                    progressBar.setVisibility(View.GONE);
+                                } else if (i == TextToSpeech.ERROR) {
+                                    Toast.makeText(getActivity(), "Text To Speech failed...",
+                                            Toast.LENGTH_SHORT)
+                                            .show();
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                Intent installTTSIntent = new Intent();
+                installTTSIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+                startActivity(installTTSIntent);
+            }
+        }
+    }
+
+    private void setRepeatTime() {
+
+        float repeatTime = Float.parseFloat(PreferenceManager
+                .getDefaultSharedPreferences(getActivity())
+                .getString(SettingsActivity.KEY_REPEAT_FREQUENCY, "6"));
+
+        Log.d("MF", "REPEAT TIME " + repeatTime);
+
+        WordsManager.getInstance().setRepeatFrequency(repeatTime);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        textToSpeech.shutdown();
+    }
+
     private class StatsPagerAdapter extends FragmentPagerAdapter {
         public StatsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -106,11 +185,9 @@ public class MainFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return StatsFragment.newInstance(new int[]{10, 20, 70});
+                    return new ProgressStatsFragment();
                 case 1:
-                    return StatsFragment.newInstance(new int[]{33, 33, 34});
-                case 2:
-                    return StatsFragment.newInstance(new int[]{42, 42, 12});
+                    return new ViewsStatsFragment();
                 default:
                     return null;
             }
@@ -194,21 +271,12 @@ public class MainFragment extends Fragment {
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            waitDialog = ProgressDialog.show(getActivity(), "Зачекайте будь ласка",
-                    "Триває завантаження слів...");
-        }
-
-        @Override
         protected void onPostExecute(ArrayList<WordData> wordDataArrayList) {
-            waitDialog.dismiss();
-
             if (wordDataArrayList != null) {
                 data = wordDataArrayList;
                 databaseHandler.insertWords(data);
-                Log.d(LOG_TAG, String.valueOf(data.size()));
-                DefineoApp.getInstance().setData(data);
+                databaseHandler.insertViewStatsValues();
+                WordsManager.getInstance().setData(data);
             } else {
                 Log.d(LOG_TAG, "wordDataArrayList == NULL");
             }
@@ -259,6 +327,18 @@ public class MainFragment extends Fragment {
             }
 
             return data;
+        }
+    }
+
+    private class InitTtsTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Intent checkTTSIntent = new Intent();
+            checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+            startActivityForResult(checkTTSIntent, MY_DATA_CHECK_CODE);
+            Log.d("MainFragment", "initTTS");
+            return null;
         }
     }
 }
